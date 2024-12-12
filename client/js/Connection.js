@@ -36,6 +36,7 @@ export class Connection {
       .catch((error) => {
       this._lastQueryStatus = false;
       });
+    
   }
 
   sendCards(cardsPosition) {

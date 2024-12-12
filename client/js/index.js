@@ -6,12 +6,15 @@ import { uiGame } from "./uiGame.js";
 
 
 const connection = Connector.getInstance("http://localhost:3000");
-await connection.getCards();
+connection.getCards();
+deckBuilder.builder();
+playerDeck.deckShuffle();
+
 export {connection};
 
 
 
-deckBuilder.builder();
-playerDeck.deckShuffle();
+
+
 uiGame.init("#button-section", "#post-positions", "#new-game");
 uiDrag.init(".drop-zone", ".card");

@@ -1,4 +1,5 @@
 import { connection } from './index.js'; // Importa la instancia creada en index.js
+import { playerDeck } from './playerDeck.js';
 
 
 export const uiGame = {
@@ -6,13 +7,14 @@ export const uiGame = {
 
         document.getElementById('post-positions').addEventListener('click', () => {
 
-            const cardPositionsJson = JSON.stringify(cardPositions);
+        
             connection.sendCards(cardPositionsJson);
         });
 
 
         document.getElementById('new-game').addEventListener('click', () => {
             connection.setNewGame();
+            playerDeck.deckShuffle();
         });
 
 
