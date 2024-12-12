@@ -25,6 +25,24 @@ export const deckBuilder = {
             }
             card.setAttribute('data-value', cardNum);
             card.textContent = `${cardNum}`;
+            switch (card.dataset.suit) {
+                case 'basto':
+                    card.style.backgroundImage = 'url("images/as-bastos.png")';
+                    card.style.backgroundSize = 'cover';
+                    break;
+                case 'copa':
+                    card.style.backgroundImage = 'url("images/copa.jpg")';
+                    card.style.backgroundSize = 'cover';
+                    break;
+                case 'espada':
+                    card.style.backgroundImage = 'url("images/espadas.jpg")';
+                    card.style.backgroundSize = 'cover';
+                    break;
+                case 'oro':
+                    card.style.backgroundImage = 'url("images/oro.jpg")';
+                    card.style.backgroundSize = 'cover';
+                    break;
+            }
             cardsContainer.appendChild(card);
         }
     }

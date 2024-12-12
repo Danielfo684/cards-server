@@ -14,7 +14,6 @@ const cartasPosiciones = {
 
 
 app.get('/', (req, res) => {
-    console.log(cartasPosiciones.lista)
     res.json(cartasPosiciones.lista);
 });
 

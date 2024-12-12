@@ -13,34 +13,33 @@ export class Connection {
   // }
 
   getCards() {
-    fetch(`http://localhost:3000/`)
+    fetch(`${this._url}/`)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response)
 
-        for (const card of response) {
-          console.log(card);
+      for (const card of response) {
+        console.log(card);
 
-          const cardElement = document.querySelector(`#${card.id}`);
-          const dropZone = document.getElementById(card.suit);
-          dropZone.appendChild(cardElement);
-          // Asegúrate de que la "dropZone" tenga un estilo apropiado
-          const dropZoneRect = dropZone.getBoundingClientRect(); // Obtén la posición de la zona de caída
+        const cardElement = document.querySelector(`#${card.id}`);
+        const dropZone = document.getElementById(card.suit);
+        dropZone.appendChild(cardElement);
+        // Asegúrate de que la "dropZone" tenga un estilo apropiado
+        const dropZoneRect = dropZone.getBoundingClientRect(); // Obtén la posición de la zona de caída
+        cardElement.style.textAlign = 'left';
+        cardElement.style.position = 'absolute';
+        cardElement.style.left = `${card.x}px`;  // Usa dropZoneRect.left
+        cardElement.style.top = `${card.y}px`;    // Usa dropZoneRect.top
+      };
 
-          cardElement.style.position = 'absolute';
-          cardElement.style.left = `${card.x}px`;  // Usa dropZoneRect.left
-          cardElement.style.top = `${card.y}px`;    // Usa dropZoneRect.top
-        };
-
-        this._lastQueryStatus = true;
+      this._lastQueryStatus = true;
       })
       .catch((error) => {
-        this._lastQueryStatus = false;
+      this._lastQueryStatus = false;
       });
   }
 
   sendCards(cardsPosition) {
-    fetch('http://localhost:3000/cards', {
+    fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

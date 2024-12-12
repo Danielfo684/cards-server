@@ -5,30 +5,11 @@ export const uiDrag = {
     init: (dropZones, notes) => {
 
 
-      
+
         //Notes Section
         document.querySelectorAll(notes).forEach((note) => {
-            // Ensure each note has a unique ID
             // Draggable
             note.setAttribute('draggable', 'true');
-            switch (note.dataset.suit) {
-                case 'basto':
-                    note.style.backgroundImage = 'url("images/as-bastos.png")';
-                    note.style.backgroundSize = 'cover';
-                    break;
-                case 'copa':
-                    note.style.backgroundImage = 'url("images/copa.jpg")';
-                    note.style.backgroundSize = 'cover';
-                    break;
-                case 'espada':
-                    note.style.backgroundImage = 'url("images/espadas.jpg")';
-                    note.style.backgroundSize = 'cover';
-                    break;
-                case 'oro':
-                    note.style.backgroundImage = 'url("images/oro.jpg")';
-                    note.style.backgroundSize = 'cover';
-                    break;
-            }
 
             //DragStart event
             note.addEventListener('dragstart', (event) => {
@@ -54,10 +35,6 @@ export const uiDrag = {
                 zone.style.backgroundColor = '#f4f4f4';
             });
 
-
-
-
-
             zone.addEventListener('drop', (e) => {
                 e.preventDefault();
                 let card = e.dataTransfer.getData('text/plain');
@@ -73,9 +50,13 @@ export const uiDrag = {
                     const y = e.clientY - zone.getBoundingClientRect().top - (draggingNote.offsetWidth / 2);
 
                     draggingNote.style.position = 'absolute';
+                    draggingNote.style.textAlign = 'left';
+
                     draggingNote.style.left = `${x}px`;
                     draggingNote.style.top = `${y}px`;
+                    zone.style.backgroundColor = '#fff';
 
+                    //crea un objeto con la posición de la carta
                     const cardPosition = {
                         "id": card,
                         "suit": zone.id,
@@ -83,17 +64,16 @@ export const uiDrag = {
                         "y": y
                     };
 
-                     connection.sendCards(cardPosition);
-                    zone.appendChild(draggingNote);
+                    //llama a la conexión singleton y envía la posición de la carta
+                    try {
+                        connection.sendCards(cardPosition);
+                        zone.appendChild(draggingNote);
+                    } catch (error) {
+                        console.error('Error sending card position:', error);
+                    }
 
                     // }
                 }
-
-
-                //   Cambia el color de la nota dependiendo de la zona
-
-
-                zone.style.backgroundColor = '#fff';
             });
         });
 
