@@ -9,25 +9,39 @@
 </head>
 
 <body>
-    <button id="post-positions">Post Positions</button>
-    <div id="container">
-        <div id="basto" class="drop-zone">
-            <h2>Bastos</h2>
+
+    <main>
+        <div id="button-section">
+            <button id="new-game">Nueva Partida</button>
+            <button id="post-positions">Guardar partida</button>
         </div>
-        <div id="espada" class="drop-zone">
-            <h2>Espadas</h2>
+        <div id="container">
+            <div class="container-area">
+                <h2>Bastos</h2>
+                <div id="basto" class="drop-zone">
+                </div>
+            </div>
+            <div class="container-area">
+                <h2>Espadas</h2>
+                <div id="espada" class="drop-zone">
+                </div>
+            </div>
+            <div class="container-area">
+                <h2>Oros</h2>
+                <div id="oro" class="drop-zone">
+                </div>
+            </div>
+            <div class="container-area">
+                <h2>Copas</h2>
+                <div id="copa" class="drop-zone">
+                </div>
+            </div>
         </div>
-        <div id="oro" class="drop-zone">
-            <h2>Oros</h2>
-        </div>
-        <div id="copa" class="drop-zone">
-            <h2>Copas</h2>
-        </div>
-    </div>
+    </main>
 
     <div id="cards-container">
     </div>
-    
+
     <script type="module" src="js/index.js"></script>
 </body>
 

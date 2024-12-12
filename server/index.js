@@ -14,16 +14,33 @@ const cartasPosiciones = {
 
 
 app.get('/', (req, res) => {
-    res.json(cartasPosiciones);
+    console.log(cartasPosiciones.lista)
+    res.json(cartasPosiciones.lista);
 });
 
 
 app.post('/cards', (req, res) => {
     const newItem = req.body;
-    console.log(req.body);
-   console.log('Llegan los datos');
-   cartasPosiciones.lista.push(newItem);
-    res.sendStatus(200);
+    // Suponiendo que 'cartasPosiciones' es un array o un objeto donde guardas las posiciones
+
+    const existingItem = cartasPosiciones.lista.find(item => item.id === newItem.id);
+    if (existingItem) {
+        existingItem.x = newItem.x;
+        existingItem.y = newItem.y;
+        res.status(200).json({
+            status: 'OK',
+            message: 'Item edited successfully',
+            data: existingItem
+        });
+    } else {
+        // Devuelve un JSON con el estado y el mensaje
+        res.status(200).json({
+            status: 'OK',
+            message: 'Item created successfully',
+            data: newItem
+        });
+        cartasPosiciones.lista.push(newItem);
+    }
 });
 
 // Iniciar el servidor

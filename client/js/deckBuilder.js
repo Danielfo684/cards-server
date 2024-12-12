@@ -10,7 +10,7 @@ export const deckBuilder = {
             const card = document.createElement('div'); // Crea un div
             card.classList.add('card'); // Añade la clase "card"
             card.id = `card-${i}`; // Asigna un ID incremental
-
+            card.style.zIndex = i;
 
             const suitIndex = Math.floor((i - 1) / 10);
             card.setAttribute('data-suit', suits[suitIndex]);

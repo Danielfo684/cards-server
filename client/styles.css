@@ -15,10 +15,26 @@ margin: 0;
 padding: 0;
 box-sizing: border-box;}
 
+
+main {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex-flow: row wrap;
+}
 #container {
     display: flex;
     gap: 20px;
-    width: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+.container-area {
+align-content: center;
+}
+.container-area h2 {
+    text-align: center;
 }
 button {
     padding: 10px 20px;
@@ -42,7 +58,7 @@ button:active {
     transform: scale(1);
 }
 .drop-zone {
-    flex: 1;
+    width: auto;
     text-align: center;
     border: 2px dashed #ccc;
     padding: 20px;
@@ -51,6 +67,7 @@ button:active {
     overflow: hidden;
     border-radius: 8px;
     transition: background-color 0.3s;
+    aspect-ratio: 15/20;
 }
 /* 
 #bastos {
@@ -74,6 +91,7 @@ button:active {
     flex-flow: row wrap;
 }
 
+
 .card {
     padding: 10px 20px;
     border-radius: 5px;
@@ -82,4 +100,7 @@ button:active {
     position: relative;
     width: 50px;
     aspect-ratio: 9/20;
+}
+.card:hover {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
 }

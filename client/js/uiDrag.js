@@ -1,16 +1,11 @@
-import { Connection } from './Connection.js';
+import { connection } from './index.js'; // Importa la instancia creada en index.js
 
 
 export const uiDrag = {
     init: (dropZones, notes) => {
 
-        const cardPositions = [];
 
-        document.getElementById('post-positions').addEventListener('click', () => {
-           
-            const cardPositionsJson = JSON.stringify(cardPositions);
-            Connection.sendCards(cardPositionsJson);
-        });
+      
         //Notes Section
         document.querySelectorAll(notes).forEach((note) => {
             // Ensure each note has a unique ID
@@ -59,11 +54,9 @@ export const uiDrag = {
                 zone.style.backgroundColor = '#f4f4f4';
             });
 
-            let espadas = [];
-            let copas = [];
-            let oros = [];
-            let bastos = [];
-let droppedCards = [espadas, copas, oros, bastos];
+
+
+
 
             zone.addEventListener('drop', (e) => {
                 e.preventDefault();
@@ -86,16 +79,11 @@ let droppedCards = [espadas, copas, oros, bastos];
                     const cardPosition = {
                         "id": card,
                         "suit": zone.id,
-                        "x": draggingNote.style.left,
-                        "y": draggingNote.style.top
+                        "x": x,
+                        "y": y
                     };
 
-
-                    // IMPORTANTE: Aquí se envía la posición de la carta al servidor. Está comentada porque se envía con la posición incorrecta.
-                    //Probar la conexión con el servidor descomentando la siguiente línea
-                 
-                    //  Connection.sendCards(cardPosition);
-
+                     connection.sendCards(cardPosition);
                     zone.appendChild(draggingNote);
 
                     // }
